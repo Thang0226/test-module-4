@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head">
+    <title>AddNew</title>
+</head>
+<body>
+<h2>Add Voucher</h2>
+
+<p>
+    <a th:href="@{/vouchers}">
+        Back to list
+    </a>
+</p>
+
+<div id="form">
+    <form th:action="@{/vouchers/save}" th:object="${voucher}" method="POST">
+        <table>
+            <tr>
+                <td><label for="title">Title: </label></td>
+                <td><input type="text" id="title" th:field="*{name}" required /></td>
+                <td style="color: red"><span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span></td>
+            </tr>
+            <tr>
+                <td><label for="startTime">Start Time: </label></td>
+                <td><input type="date" id="startTime" th:field="*{startTime}" required/></td>
+                <td style="color: red"><span th:if="${#fields.hasErrors('startTime')}" th:errors="*{startTime}"></span></td>
+            </tr>
+            <tr>
+                <td><label for="endTime">End Time: </label></td>
+                <td><input type="date" id="endTime" th:field="*{endTime}" required/></td>
+                <td style="color: red"><span th:if="${#fields.hasErrors('endTime')}" th:errors="*{endTime}"></span></td>
+            </tr>
+            <tr>
+                <td><label for="discount">Discount Amount (VND): </label></td>
+                <td><input type="number" id="discount" th:field="*{discount}" required/></td>
+                <td style="color: red"><span th:if="${#fields.hasErrors('discount')}" th:errors="*{discount}"></span></td>
+            </tr>
+            <tr>
+                <td><label for="details">Voucher Details: </label></td>
+                <td><input type="text" id="details" th:field="*{details}" required/></td>
+                <td style="color: red"><span th:if="${#fields.hasErrors('details')}" th:errors="*{details}"></span></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Add New Voucher"/></td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+<footer th:replace="layout :: footer"></footer>
+</body>
+</html>

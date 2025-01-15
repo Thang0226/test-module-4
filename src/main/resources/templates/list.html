@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head th:replace="~{layout :: head}">
+    <title>List</title>
+</head>
+
+<body>
+<h2>Vouchers for You</h2>
+<p style="margin-left: 5px">
+    <a th:href="@{/vouchers/create}"> Add new voucher </a>
+</p>
+
+<div style="margin-bottom: 10px; margin-left: 110px">
+    <form th:action="@{/vouchers}" method="get">
+        <label><input type="text" name="search"></label>
+        <button type="submit" class="btn btn-success">Search Vouchers</button>
+    </form>
+</div>
+<br>
+
+<table id="list">
+    <thead>
+    <tr>
+        <th>Title</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Discount Amount</th>
+        <th>Details</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row : ${vouchers}">
+        <td th:text="${row.name}"></td>
+        <td th:text="${row.startTime}"></td>
+        <td th:text="${row.endTime}"></td>
+        <td th:text="${row.discount}"></td>
+        <td th:text="${row.details}"></td>
+        <td><a th:href="@{/vouchers/__${row.id}__/edit}">Edit</a></td>
+        <td><a th:href="@{/vouchers/__${row.id}__/delete}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+
+<div th:insert="~{/layout :: footer}"></div>
+</body>
+</html>
