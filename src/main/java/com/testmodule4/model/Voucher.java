@@ -34,7 +34,7 @@ public class Voucher {
     private LocalDate endTime;
 
     @NotNull
-    @Min(10001)
+    @Min(value = 10001, message = "Discount amount must be greater than 10.000 VND")
     private long discount;
 
     @NotNull

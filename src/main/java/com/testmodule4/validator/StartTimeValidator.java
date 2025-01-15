@@ -12,13 +12,14 @@ public class StartTimeValidator implements ConstraintValidator<ValidStartTime, V
         if (voucher == null) {
             return true;
         }
-
         LocalDate now = LocalDate.now();
-
-        if (voucher.getStartTime().isBefore(now)) {
-            return false;
+        boolean isValid = !voucher.getStartTime().isBefore(now);
+        if (!isValid) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate())
+                    .addPropertyNode("startTime")
+                    .addConstraintViolation();
         }
-
-        return true;
+        return isValid;
     }
 }

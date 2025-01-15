@@ -13,6 +13,13 @@ public class EndTimeValidator implements ConstraintValidator<ValidEndTime, Vouch
             return true;
         }
 
-        return voucher.getEndTime().isAfter(voucher.getStartTime());
+        boolean isValid = voucher.getEndTime().isAfter(voucher.getStartTime());
+        if (!isValid) {
+            context.disableDefaultConstraintViolation();
+            context.buildConstraintViolationWithTemplate(context.getDefaultConstraintMessageTemplate())
+                    .addPropertyNode("endTime")
+                    .addConstraintViolation();
+        }
+        return isValid;
     }
 }
