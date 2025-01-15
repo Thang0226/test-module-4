@@ -8,7 +8,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
@@ -46,7 +45,7 @@ public class VoucherController {
             model.addAttribute("voucher", voucher.get());
             return "delete";
         } else {
-            return "error";
+            return "error_voucher";
         }
     }
 
@@ -54,5 +53,12 @@ public class VoucherController {
     public String deleteVoucher(@RequestParam Long id) {
         voucherService.remove(id);
         return "redirect:/vouchers";
+    }
+
+    @GetMapping("/search")
+    public String searchVouchers(@RequestParam("search") String discount, Model model) {
+        long amount = Long.parseLong(discount);
+        model.addAttribute("vouchers", voucherService.findAllByDiscount(amount));
+        return "list";
     }
 }

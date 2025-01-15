@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface IVoucherRepository extends JpaRepository<Voucher, Long> {
+    Iterable<Voucher> findAllByDiscount(long discount);
 }

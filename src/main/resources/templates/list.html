@@ -8,13 +8,17 @@
 <body>
 <h2>Vouchers for You</h2>
 <p style="margin-left: 5px">
+    <a th:href="@{/vouchers}"> All Vouchers </a>
+</p>
+
+<p style="margin-left: 5px">
     <a th:href="@{/vouchers/create}"> Add new voucher </a>
 </p>
 
 <div style="margin-bottom: 10px; margin-left: 110px">
-    <form th:action="@{/vouchers}" method="get">
+    <form th:action="@{/vouchers/search}" method="get">
         <label><input type="text" name="search"></label>
-        <button type="submit" class="btn btn-success">Search Vouchers</button>
+        <button type="submit" class="btn btn-success">Search by discount</button>
     </form>
 </div>
 <br>
