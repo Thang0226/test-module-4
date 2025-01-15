@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Controller
@@ -56,9 +57,23 @@ public class VoucherController {
     }
 
     @GetMapping("/search")
-    public String searchVouchers(@RequestParam("search") String discount, Model model) {
+    public String searchVouchersByDiscount(@RequestParam("search") String discount, Model model) {
         long amount = Long.parseLong(discount);
         model.addAttribute("vouchers", voucherService.findAllByDiscount(amount));
+        return "list";
+    }
+
+    @GetMapping("/search_start_date")
+    public String searchVouchersByStartDate(@RequestParam("search") String date, Model model) {
+        LocalDate startDate = LocalDate.parse(date);
+        model.addAttribute("vouchers", voucherService.findAllByStartTime(startDate));
+        return "list";
+    }
+
+    @GetMapping("/search_end_date")
+    public String searchVouchersByEndDate(@RequestParam("search") String date, Model model) {
+        LocalDate startDate = LocalDate.parse(date);
+        model.addAttribute("vouchers", voucherService.findAllByEndTime(startDate));
         return "list";
     }
 }

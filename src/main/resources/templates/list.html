@@ -18,7 +18,19 @@
 <div style="margin-bottom: 10px; margin-left: 110px">
     <form th:action="@{/vouchers/search}" method="get">
         <label><input type="text" name="search"></label>
-        <button type="submit" class="btn btn-success">Search by discount</button>
+        <button type="submit" class="btn btn-success">Search by Discount</button>
+    </form>
+</div>
+<div style="margin-bottom: 10px; margin-left: 110px">
+    <form th:action="@{/vouchers/search_start_date}" method="get">
+        <label><input type="date" name="search"></label>
+        <button type="submit" class="btn btn-success">Search by Start Date</button>
+    </form>
+</div>
+<div style="margin-bottom: 10px; margin-left: 110px">
+    <form th:action="@{/vouchers/search_end_date}" method="get">
+        <label><input type="date" name="search"></label>
+        <button type="submit" class="btn btn-success">Search by End Date</button>
     </form>
 </div>
 <br>
@@ -27,8 +39,8 @@
     <thead>
     <tr>
         <th>Title</th>
-        <th>Start Time</th>
-        <th>End Time</th>
+        <th>Start Date</th>
+        <th>End Date</th>
         <th>Discount Amount</th>
         <th>Details</th>
         <th>Edit</th>
