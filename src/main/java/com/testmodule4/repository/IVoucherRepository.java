@@ -5,13 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.Collection;
 
 @Repository
 public interface IVoucherRepository extends JpaRepository<Voucher, Long> {
 
-    Iterable<Voucher> findAllByDiscount(long discount);
+    Collection<Voucher> findAllByDiscount(long discount);
 
-    Iterable<Voucher> findAllByStartTime(LocalDate date);
+    Collection<Voucher> findAllByStartTime(LocalDate date);
 
-    Iterable<Voucher> findAllByEndTime(LocalDate date);
+    Collection<Voucher> findAllByEndTime(LocalDate date);
 }

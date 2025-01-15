@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -74,6 +75,16 @@ public class VoucherController {
     public String searchVouchersByEndDate(@RequestParam("search") String date, Model model) {
         LocalDate startDate = LocalDate.parse(date);
         model.addAttribute("vouchers", voucherService.findAllByEndTime(startDate));
+        return "list";
+    }
+
+    @GetMapping("/search_all")
+    public String searchVouchersBy3Fields(@RequestParam long discount, @RequestParam LocalDate start_date, @RequestParam LocalDate end_date, Model model) {
+        ArrayList<Voucher> vouchers = new ArrayList<>();
+        vouchers.addAll(voucherService.findAllByDiscount(discount));
+        vouchers.addAll(voucherService.findAllByStartTime(start_date));
+        vouchers.addAll(voucherService.findAllByEndTime(end_date));
+        model.addAttribute("vouchers", vouchers);
         return "list";
     }
 }

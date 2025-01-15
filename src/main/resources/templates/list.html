@@ -33,6 +33,14 @@
         <button type="submit" class="btn btn-success">Search by End Date</button>
     </form>
 </div>
+<div style="margin-bottom: 10px; margin-top: 20px; margin-left: 110px">
+    <form th:action="@{/vouchers/search_all}" method="get"> Search by 3 fields: <br>
+        Discount: <label><input type="text" name="discount"></label><br>
+        Start Date: <label><input type="date" name="start_date"></label><br>
+        End Date:   <label><input type="date" name="end_date"></label><br>
+        <button type="submit" class="btn btn-success">Search all by 3 fields</button>
+    </form>
+</div>
 <br>
 
 <table id="list">

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Collection;
 import java.util.Optional;
 
 @Service
@@ -35,17 +36,17 @@ public class VoucherService implements IVoucherService {
     }
 
     @Override
-    public Iterable<Voucher> findAllByDiscount(long discount) {
+    public Collection<? extends Voucher> findAllByDiscount(long discount) {
         return voucherRepository.findAllByDiscount(discount);
     }
 
     @Override
-    public Iterable<Voucher> findAllByStartTime(LocalDate date) {
+    public Collection<? extends Voucher> findAllByStartTime(LocalDate date) {
         return voucherRepository.findAllByStartTime(date);
     }
 
     @Override
-    public Iterable<Voucher> findAllByEndTime(LocalDate date) {
+    public Collection<? extends Voucher> findAllByEndTime(LocalDate date) {
         return voucherRepository.findAllByEndTime(date);
     }
 }
