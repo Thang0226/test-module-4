@@ -9,4 +9,6 @@ public interface IVoucherService extends IService<Voucher> {
     Collection<? extends Voucher> findAllByDiscount(long discount);
     Collection<? extends Voucher> findAllByStartTime(LocalDate date);
     Collection<? extends Voucher> findAllByEndTime(LocalDate date);
+
+    Iterable<Voucher> findAllByThreeFields(long discount, LocalDate startDate, LocalDate endDate);
 }

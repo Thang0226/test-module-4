@@ -80,10 +80,14 @@ public class VoucherController {
 
     @GetMapping("/search_all")
     public String searchVouchersBy3Fields(@RequestParam long discount, @RequestParam LocalDate start_date, @RequestParam LocalDate end_date, Model model) {
-        ArrayList<Voucher> vouchers = new ArrayList<>();
-        vouchers.addAll(voucherService.findAllByDiscount(discount));
-        vouchers.addAll(voucherService.findAllByStartTime(start_date));
-        vouchers.addAll(voucherService.findAllByEndTime(end_date));
+
+//        ArrayList<Voucher> vouchers = new ArrayList<>();
+//        vouchers.addAll(voucherService.findAllByDiscount(discount));
+//        vouchers.addAll(voucherService.findAllByStartTime(start_date));
+//        vouchers.addAll(voucherService.findAllByEndTime(end_date));
+
+        Iterable<Voucher> vouchers = voucherService.findAllByThreeFields(discount, start_date, end_date);
+
         model.addAttribute("vouchers", vouchers);
         return "list";
     }

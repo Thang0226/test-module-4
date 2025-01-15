@@ -49,4 +49,9 @@ public class VoucherService implements IVoucherService {
     public Collection<? extends Voucher> findAllByEndTime(LocalDate date) {
         return voucherRepository.findAllByEndTime(date);
     }
+
+    @Override
+    public Iterable<Voucher> findAllByThreeFields(long discount, LocalDate startDate, LocalDate endDate) {
+        return voucherRepository.findAllByThreeFields(discount, startDate, endDate);
+    }
 }
